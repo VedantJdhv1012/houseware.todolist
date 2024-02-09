@@ -1,70 +1,130 @@
-# Getting Started with Create React App
+### Test Plan for TodoMVC Application
+This document outlines the test plan for the TodoMVC application. 
+The plan covers the testing strategy for each component of the application, including the Header, Main, Footer, Input, and Item components.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Header Component
 
-## Available Scripts
+>>Types of Tests:
 
-In the project directory, you can run:
+> Unit Tests: Test individual functions and event handlers.
+> Integration Tests: Ensure correct integration with other components.
 
-### `npm start`
+>> Test Cases:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+> Rendering:
+Test if the component renders without crashing. This includes checking if the header and the input field are present in the document.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+> Dispatch Function:
+Test if the ADD_ITEM action is dispatched with the correct payload when the Enter key is pressed in the input field.
 
-### `npm test`
+## Main Component
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+>> Types of Tests:
+> Unit Tests: Test individual functions.
+> Integration Tests: Ensure correct integration with other components.
 
-### `npm run build`
+>> Test Cases:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> Rendering:
+Test if the component renders without crashing. This includes checking if the main section and the todo items are present in the document.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+> Toggle All Checkbox:
+Test if the TOGGLE_ALL action is dispatched when the "Toggle All" checkbox is clicked. Also, test if the checkbox status updates based on visible todos.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+>Todo Items Render Test: 
+Test if the correct number of todo items are rendered based on the todos prop. Also, test if individual todo items are rendered correctly.
 
-### `npm run eject`
+>Visibility Filter Test: 
+Test if the visibility filter works correctly. This includes testing if the correct todo items are shown based on the current route (/, /active, /completed).
+>Writable State Test:
+ Test if the component changes to a writable state when the label is double-clicked.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Input Component
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+>> Types of Tests:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+>Unit Tests: Test individual functions and event handlers.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+>> Test Cases:
 
-## Learn More
+> Rendering:
+Verify that the input component renders correctly.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+> Props Test:
+Test if the component renders with the provided props. This includes checking if the input field has the correct placeholder, label, and default value.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+> Submit Test:
+Test if the component sanitizes the input value and submits it when the Enter key is pressed. This includes checking if the onSubmit callback is called with the sanitized input value.
 
-### Code Splitting
+> Reset Test:
+Test if the component resets the input value after submit. This includes checking if the input value is empty after the Enter key is pressed.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+> Whitespace Test:
+Test if the component does not call the onSubmit callback for whitespace input. This includes checking if the onSubmit callback is not called when the input value is whitespace and the Enter key is pressed.
 
-### Analyzing the Bundle Size
+> Minimum Length Test:
+Test if the component does not submit if the input value does not meet the minimum length. This includes checking if the onSubmit callback is not called when the input value is less than the minimum length and the Enter key is pressed.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+> Blur Test:
+Test if the component calls the onBlur callback when the input loses focus. This includes checking if the onBlur callback is called when the input field loses focus.
 
-### Making a Progressive Web App
+## Item Component
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Types of Tests:
+Unit Tests: Test individual functions and event handlers.
 
-### Advanced Configuration
+>> Test Cases:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+> Rendering:
+Verify that the item component renders correctly.
 
-### Deployment
+> Toggle Test:
+Test if the component toggles the completed state when the checkbox is clicked. This includes checking if the dispatch function is called with the correct action type and payload.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+> Remove Test:
+Test if the component removes the item when the delete button is clicked. This includes checking if the dispatch function is called with the correct action type and payload.
 
-### `npm run build` fails to minify
+>  Edit Mode Test:
+Test if the component enters and exits the edit mode correctly. This includes checking if the todo item has the correct class when it is double-clicked and when it loses focus.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> Update Test:
+Test if the component updates the item title when the edit is submitted. This includes checking if the dispatch function is called with the correct action type and payload when the input value is changed and it loses focus.
+
+> Empty Value Test:
+Test if the component does not update the item title when the edit is submitted with an empty value. This includes checking if the dispatch function is called with the correct action type and payload when the input value is empty and it loses focus.
+
+## Footer Component
+
+>> Types of Tests:
+Unit Tests: Test individual functions and event handlers.
+Integration Tests: Ensure correct integration with other components.
+
+>> Test Cases:
+
+> Rendering:
+Test if the component renders without crashing. This includes checking if the footer, filter links, and the "Clear completed" button are present in the document.
+
+> Navigation Test:
+Test if the component navigates to the correct route when a filter link is clicked. This includes checking if the window location hash updates correctly.
+
+>Action Dispatch Test:
+Test if the REMOVE_COMPLETED_ITEMS action is dispatched when the "Clear completed" button is clicked. This includes checking if the dispatch function is called with the correct action type.
+
+> Button State Test:
+Test if the "Clear completed" button is disabled when there are no completed todos. This includes checking if the button is disabled in the document.
+
+>Active Todos Count Test
+Test if the component displays the correct number of active todos. This includes checking if the correct text ("0 items left!", "1 item left!", "2 items left!", etc.) is present in the document.
+
+>No Todos Test
+Test if the component does not render when there are no todos. This includes checking if the footer is not present in the document.
+
+# General Testing Considerations:
+>> Edge Cases:
+Test with empty inputs, edge cases for input validation, etc.
+>> Mocking:
+Mock external dependencies such as dispatch functions.
+
+# Coverage:
+Aim for high code coverage to ensure comprehensive testing.
+By following this test plan, we can ensure thorough testing coverage for the TodoMVC application, helping to identify and fix any issues or bugs before deployment.
